@@ -1,11 +1,14 @@
 class Expense {
   int id;
-  int category;
-  num value;
-  String description;
-  String urlAvatar;
+  String descricao;
+  num valor;
+  String categoria;
+  String avatar;
 
-  Expense(this.id, this.category, this.value, this.description, this.urlAvatar);
+  Expense({required this.id, required this.descricao, required this.valor, required this.categoria, required this.avatar});
+   
 }
+
+
 
 

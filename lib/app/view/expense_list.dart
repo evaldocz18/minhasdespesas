@@ -1,15 +1,13 @@
-// ignore_for_file: sized_box_for_whitespace
+// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors
 import 'package:flutter/material.dart';
-import 'package:minhasdespesas/app/database/sqlite/connection.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:minhasdespesas/app/database/sqlite/expense_dao_impl.dart';
+import 'package:minhasdespesas/app/domain/entities/expense.dart';
 import '../my_app.dart';
 
 // ignore: use_key_in_widget_constructors
 class ExpenseList extends StatelessWidget {
-  // ignore: unused_element
-  Future<List<Map<String, dynamic>>> _buscar() async {
-    Database? db = await Connection.get();
-    return db!.query('expense');
+  Future<List<Expense>> _buscar() async {
+    return ExpenseDAOImpl().find();
   }
 
   @override
@@ -18,7 +16,8 @@ class ExpenseList extends StatelessWidget {
         future: _buscar(),
         builder: (context, futuro) {
           if (futuro.hasData) {
-            var lista = futuro.data as List?;
+            List<Expense> lista = futuro.data as List<Expense>;
+
             return Scaffold(
                 appBar: AppBar(
                   title: const Text('Lista de Despesas'),
@@ -31,20 +30,18 @@ class ExpenseList extends StatelessWidget {
                   ],
                 ),
                 body: ListView.builder(
-                  itemCount: lista?.length,
+                  itemCount: lista.length,
                   itemBuilder: (context, i) {
-                    var expense = lista?[i];
-                    var avatar = CircleAvatar(
-                      backgroundImage: NetworkImage(expense['url_avatar']),
-                    );
-                    var value = (expense['value']);
+                    var expense = lista[i];
 
-                    // ignore: unused_local_variable
+                    var avatar = CircleAvatar(
+                      backgroundImage: NetworkImage(expense.avatar),
+                    );
 
                     return ListTile(
                       leading: avatar,
-                      title: Text(expense['description']),
-                      subtitle: Text(expense['category']),
+                      title: Text(expense.descricao),
+                      subtitle: Text(expense.categoria),
                       trailing: Container(
                         width: 100,
                         child: Row(
@@ -59,7 +56,7 @@ class ExpenseList extends StatelessWidget {
                                 textStyle: const TextStyle(fontSize: 15),
                               ),
                               onPressed: () {},
-                              child: Text(value.toString()),
+                              child: Text(expense.valor.toStringAsFixed(2)),
                             ),
                           ],
                         ),
@@ -68,7 +65,7 @@ class ExpenseList extends StatelessWidget {
                   },
                 ));
           } else {
-            // ignore: prefer_const_constructors
+           
             return Scaffold();
           }
         });
