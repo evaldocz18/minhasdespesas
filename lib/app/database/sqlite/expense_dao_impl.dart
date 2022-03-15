@@ -13,11 +13,12 @@ class ExpenseDAOImpl implements ExpenseDAO {
     List<Expense> lista = List.generate(resultado.length, (i) {
       var linha = resultado[i];
       return Expense(
-          id: linha['id'],
-          descricao: linha['descricao'],
-          valor: linha['valor'],
-          categoria: linha['categoria'],
-          avatar: linha['avatar']);
+        id: linha['id'],
+        descricao: linha['descricao'],
+        valor: linha['valor'],
+        frequencia: linha['frequencia'],
+        categoria: linha['categoria'],
+      );
     });
     return lista;
   }
@@ -34,14 +35,14 @@ class ExpenseDAOImpl implements ExpenseDAO {
     var _db = await Connection.get();
     // ignore: prefer_typing_uninitialized_variables
     late var sql;
-    
-      sql =
-          'UPDATE contact SET descricao = ?, valor = ?, categoria = ?, avatar WHERE id = ?';
-      _db?.rawUpdate(sql, [
-        expense.descricao,
-        expense.valor,
-        expense.categoria,
-        expense.avatar
-      ]);
+
+    sql =
+        'UPDATE contact SET descricao = ?, valor = ?, categoria = ?, avatar WHERE id = ?';
+    _db?.rawUpdate(sql, [
+      expense.descricao,
+      expense.valor,
+      expense.frequencia,
+      expense.categoria,
+    ]);
   }
 }

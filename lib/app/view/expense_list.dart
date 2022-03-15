@@ -34,12 +34,8 @@ class ExpenseList extends StatelessWidget {
                   itemBuilder: (context, i) {
                     var expense = lista[i];
 
-                    var avatar = CircleAvatar(
-                      backgroundImage: NetworkImage(expense.avatar),
-                    );
-
                     return ListTile(
-                      leading: avatar,
+                      //leading: avatar,
                       title: Text(expense.descricao),
                       subtitle: Text(expense.categoria),
                       trailing: Container(

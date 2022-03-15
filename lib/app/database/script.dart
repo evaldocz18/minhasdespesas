@@ -5,22 +5,22 @@ final createTable = '''
     id INTEGER PRIMARY KEY AUTOINCREMENT
     ,descricao VARCHAR(100) NOT NULL
     ,valor REAL NOT NULL
+    ,frequencia VARCHAR(100) NOT NULL
     ,categoria VARCHAR(150) NOT NULL
-    ,avatar VARCHAR(300) NOT NULL 
-  )
+    )
 ''';
 
 final insert1 = '''
-INSERT INTO expense (descricao, valor, categoria, avatar)
-VALUES ('Combustível', 20 , 'Semanal' ,'https://thumbs.dreamstime.com/z/sport-moto-icon-outline-style-vector-web-design-isolated-white-background-182759065.jpg')
+INSERT INTO expense (descricao, valor, frequencia, categoria)
+VALUES ('Abasteci a moto', 20, 'Semanal', 'Combustível')
 ''';
 
 final insert2 = '''
-INSERT INTO expense (descricao, valor, categoria, avatar)
-VALUES ('Marmita', 19 ,'Diária','https://cdn-icons-png.flaticon.com/512/267/267914.png')
+INSERT INTO expense(descricao, valor, frequencia, categoria)
+VALUES ('Marmita Grande', 'Diária' , 19 ,'Refeição')
 ''';
 
 final insert3 = '''
-INSERT INTO expense (descricao, valor, categoria, avatar)
-VALUES ('Aluguel', 700 ,'Mensal','https://cdn-icons-png.flaticon.com/512/950/950617.png')
+INSERT INTO expense (descricao, valor, frequencia, categoria)
+VALUES ('Casa', 700, 'Mensal', 'Aluguel')
 ''';
