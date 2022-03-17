@@ -17,7 +17,7 @@ VALUES ('Abasteci a moto', 20, 'Semanal', 'Combustível')
 
 final insert2 = '''
 INSERT INTO expense(descricao, valor, frequencia, categoria)
-VALUES ('Marmita Grande', 'Diária' , 19 ,'Refeição')
+VALUES ('Marmita Grande', 19, 'Diária' ,'Refeição')
 ''';
 
 final insert3 = '''

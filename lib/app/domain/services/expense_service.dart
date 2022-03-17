@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_final_fields
+// ignore_for_file: prefer_final_fields, unnecessary_null_comparison, unnecessary_new
 
 import 'package:get_it/get_it.dart';
 import 'package:minhasdespesas/app/domain/entities/expense.dart';
